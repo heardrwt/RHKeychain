@@ -50,6 +50,8 @@
     NSString *username = @"uname";
     NSString *password = @"pword";
     NSString *comment = @"comnt";
+
+    NSString *serviceName2 = @"RHKeychainGenericEntryTestServiceName2";
     NSString *username2 = @"uname2";
     NSString *password2 = @"pword2";
     NSString *comment2 = @"comnt2";
@@ -106,6 +108,27 @@
     STAssertTrue([password2 isEqualToString:RHKeychainGetGenericPassword(NULL, serviceName)], @"password should match preset value");
     STAssertTrue([comment2 isEqualToString:RHKeychainGetGenericComment(NULL, serviceName)], @"comment should match preset value");
     
+    //test renaming service item
+    STAssertTrue(RHKeychainRenameGenericEntry(NULL, serviceName, serviceName2), @"rename service should return true");
+    STAssertFalse(RHKeychainDoesGenericEntryExist(NULL, serviceName), @"entry should no longer exist post rename");
+    STAssertTrue(RHKeychainDoesGenericEntryExist(NULL, serviceName2), @"entry should exist post rename");
+
+    //query for set values post rename
+    STAssertTrue([username2 isEqualToString:RHKeychainGetGenericUsername(NULL, serviceName2)], @"username should match preset value");
+    STAssertTrue([password2 isEqualToString:RHKeychainGetGenericPassword(NULL, serviceName2)], @"password should match preset value");
+    STAssertTrue([comment2 isEqualToString:RHKeychainGetGenericComment(NULL, serviceName2)], @"comment should match preset value");
+
+    //rename back
+    STAssertTrue(RHKeychainRenameGenericEntry(NULL, serviceName2, serviceName), @"rename service should return true");
+    STAssertFalse(RHKeychainDoesGenericEntryExist(NULL, serviceName2), @"entry should no longer exist post rename");
+    STAssertTrue(RHKeychainDoesGenericEntryExist(NULL, serviceName), @"entry should exist post rename");
+    
+    //query for set values post rename
+    STAssertTrue([username2 isEqualToString:RHKeychainGetGenericUsername(NULL, serviceName)], @"username should match preset value");
+    STAssertTrue([password2 isEqualToString:RHKeychainGetGenericPassword(NULL, serviceName)], @"password should match preset value");
+    STAssertTrue([comment2 isEqualToString:RHKeychainGetGenericComment(NULL, serviceName)], @"comment should match preset value");
+
+    
     //make sure setting to nil works (causing a removal of the field)
     STAssertTrue(RHKeychainSetGenericUsername(NULL, serviceName, nil), @"set username should return true");
     STAssertTrue(RHKeychainSetGenericPassword(NULL, serviceName, nil), @"set password should return true");
@@ -114,8 +137,8 @@
     //test 
     STAssertNil(RHKeychainGetGenericUsername(NULL, serviceName), @"username should be nil post setting to nil");
     STAssertNil(RHKeychainGetGenericPassword(NULL, serviceName), @"password should be nil post setting to nil");
-    STAssertNil(RHKeychainGetGenericComment(NULL, serviceName), @"comment should be nil post setting to nil");
-
+    STAssertNil(RHKeychainGetGenericComment(NULL, serviceName), @"comment should be nil post setting to nil");    
+    
     //test removing
     STAssertTrue(RHKeychainRemoveGenericEntry(NULL, serviceName), @"remove generic entry should return true");
     STAssertFalse(RHKeychainDoesGenericEntryExist(NULL, serviceName), @"entry should no longer exist");

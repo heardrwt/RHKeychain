@@ -67,6 +67,18 @@ BOOL RHKeychainRemoveGenericEntry(SecKeychainRef keychain, NSString *serviceName
     return  YES;
 }
 
+
+extern BOOL RHKeychainRenameGenericEntry(SecKeychainRef keychain, NSString *serviceName, NSString *newServiceName){
+    //look up the item
+    SecKeychainItemRef itemRef = RHKeychainGetKeychainItemRefWithServiceName(keychain, serviceName);
+    if (!itemRef) return NO;
+    
+    //return
+    return RHKeychainSetItemAttributeTagForKeychainItemRef(itemRef, kSecServiceItemAttr, [newServiceName dataUsingEncoding:NSUTF8StringEncoding]) &&
+    RHKeychainSetItemAttributeTagForKeychainItemRef(itemRef, kSecLabelItemAttr, [newServiceName dataUsingEncoding:NSUTF8StringEncoding]);
+
+}
+
 BOOL RHKeychainDoesGenericEntryExist(SecKeychainRef keychain, NSString *serviceName){
     SecKeychainItemRef itemRef = NULL;
     OSStatus status = SecKeychainFindGenericPassword(keychain,

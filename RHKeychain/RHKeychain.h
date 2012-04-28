@@ -38,6 +38,7 @@
 //add and remove
 extern BOOL RHKeychainAddGenericEntry(SecKeychainRef keychain, NSString *serviceName);
 extern BOOL RHKeychainRemoveGenericEntry(SecKeychainRef keychain, NSString *serviceName);
+extern BOOL RHKeychainRenameGenericEntry(SecKeychainRef keychain, NSString *serviceName, NSString *newServiceName);
 extern BOOL RHKeychainDoesGenericEntryExist(SecKeychainRef keychain, NSString *serviceName);
 
 //setting properties
