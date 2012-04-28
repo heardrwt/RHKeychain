@@ -234,7 +234,7 @@ BOOL RHKeychainSetItemAttributeTagForKeychainItemRef(SecKeychainItemRef itemRef,
     //define our attributes
     SecKeychainAttribute attributes[4];
     attributes[0].tag = attributeTag; //use the passed in tag
-    attributes[0].data = dataBytes; //freed by SecKeychainItemFreeContent
+    attributes[0].data = dataBytes; 
     attributes[0].length = [setData length];
     
     //wrap in a list structure
@@ -253,6 +253,9 @@ BOOL RHKeychainSetItemAttributeTagForKeychainItemRef(SecKeychainItemRef itemRef,
         return NO;
     }    
     
+    //free the attribute data
+    if (dataBytes) free(dataBytes);
+
     return YES; //done
 }
 
@@ -291,10 +294,8 @@ BOOL RHKeychainSetPasswordForKeychainItemRef(SecKeychainItemRef itemRef, NSData 
     if (!itemRef) return NO;
     
     void *dataBytes = NULL;
-    // if (setData){ //allow NULL to unset an item value?
-        dataBytes = malloc([setData length]);
-        [setData getBytes:dataBytes length:[setData length]];
-    //  }
+    dataBytes = malloc([setData length]);
+    [setData getBytes:dataBytes length:[setData length]];
     
     
     //perform the query    
