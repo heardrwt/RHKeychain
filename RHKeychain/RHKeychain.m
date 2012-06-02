@@ -313,6 +313,9 @@ BOOL RHKeychainSetPasswordForKeychainItemRef(SecKeychainItemRef itemRef, NSData 
     //perform the query    
     OSStatus status = SecKeychainItemModifyAttributesAndData(itemRef, NULL, [setData length], dataBytes);
     
+    //free the password data
+    if (dataBytes) free(dataBytes);
+    
     //if error
     if (status != noErr) {
         CFStringRef errorMessageRef = SecCopyErrorMessageString(status, NULL);
@@ -320,9 +323,6 @@ BOOL RHKeychainSetPasswordForKeychainItemRef(SecKeychainItemRef itemRef, NSData 
         if (errorMessageRef) CFRelease(errorMessageRef);
         return NO;
     }    
-    
-    //free the password data
-    if (dataBytes) free(dataBytes);
     
     return YES; //done
 }
