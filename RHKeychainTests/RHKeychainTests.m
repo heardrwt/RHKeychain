@@ -55,7 +55,6 @@
     NSString *username2 = @"uname2";
     NSString *password2 = @"pword2";
     NSString *comment2 = @"comnt2";
-    
 
     //cleanup from any failed runs
     while (RHKeychainDoesGenericEntryExist(NULL, serviceName)){
@@ -147,6 +146,116 @@
     STAssertNil(RHKeychainGetGenericPassword(NULL, serviceName), @"password should be nil post removal");
     STAssertNil(RHKeychainGetGenericComment(NULL, serviceName), @"comment should be nil post removal");
 
+    //done
+    
+    
+}
+
+
+
+-(void)testGenericLongEntry{
+    
+    //2000+ chars
+    NSString *serviceName = @"RHKeychainGenericEntryTestServiceNameLong";
+    NSString *username = @"unameAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghij";
+    NSString *password = @"passAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghij";
+    NSString *comment = @"comntAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghij";
+    
+    NSString *serviceName2 = @"RHKeychainGenericEntryTestServiceName2";
+    NSString *username2 = @"uname2";
+    NSString *password2 = @"pword2";
+    NSString *comment2 = @"comnt2";
+    
+    //cleanup from any failed runs
+    while (RHKeychainDoesGenericEntryExist(NULL, serviceName)){
+        RHKeychainRemoveGenericEntry(NULL, serviceName);
+    }
+    
+    
+    STAssertFalse(RHKeychainDoesGenericEntryExist(NULL, serviceName), @"entry should not exist pre addition");
+    
+    STAssertNil(RHKeychainGetGenericUsername(NULL, serviceName), @"username should be nil pre addition");
+    STAssertNil(RHKeychainGetGenericPassword(NULL, serviceName), @"password should be nil pre addition");
+    STAssertNil(RHKeychainGetGenericComment(NULL, serviceName), @"comment should be nil pre addition");
+    
+    STAssertFalse(RHKeychainSetGenericUsername(NULL, serviceName, username), @"set username should return false pre addition");
+    STAssertFalse(RHKeychainSetGenericPassword(NULL, serviceName, password), @"set password should return false pre addition");
+    STAssertFalse(RHKeychainSetGenericComment(NULL, serviceName, comment), @"set comment should return false pre addition");
+    
+    STAssertNil(RHKeychainGetGenericUsername(NULL, serviceName), @"username should be nil pre addition");
+    STAssertNil(RHKeychainGetGenericPassword(NULL, serviceName), @"password should be nil pre addition");
+    STAssertNil(RHKeychainGetGenericComment(NULL, serviceName), @"comment should be nil pre addition");
+    
+    //add
+    STAssertTrue(RHKeychainAddGenericEntry(NULL, serviceName),@"AddEntry should return true");
+    STAssertTrue(RHKeychainDoesGenericEntryExist(NULL, serviceName), @"entry should exist post addition");
+    
+    //test pre setting
+    STAssertNil(RHKeychainGetGenericUsername(NULL, serviceName), @"username should be nil pre setting");
+    STAssertNil(RHKeychainGetGenericPassword(NULL, serviceName), @"password should be nil pre setting");
+    STAssertNil(RHKeychainGetGenericComment(NULL, serviceName), @"comment should be nil pre setting");
+    
+    //set
+    STAssertTrue(RHKeychainSetGenericUsername(NULL, serviceName, username), @"set username should return true");
+    STAssertTrue(RHKeychainSetGenericPassword(NULL, serviceName, password), @"set password should return true");
+    STAssertTrue(RHKeychainSetGenericComment(NULL, serviceName, comment), @"set comment should return true");
+    
+    STAssertTrue(RHKeychainDoesGenericEntryExist(NULL, serviceName), @"entry should exist post addition");
+    
+    //query for newly set strings
+    STAssertTrue([username isEqualToString:RHKeychainGetGenericUsername(NULL, serviceName)], @"username should match preset value");
+    STAssertTrue([password isEqualToString:RHKeychainGetGenericPassword(NULL, serviceName)], @"password should match preset value");
+    STAssertTrue([comment isEqualToString:RHKeychainGetGenericComment(NULL, serviceName)], @"comment should match preset value");
+    
+    //make sure updating them works
+    STAssertTrue(RHKeychainSetGenericUsername(NULL, serviceName, username2), @"set username should return true");
+    STAssertTrue(RHKeychainSetGenericPassword(NULL, serviceName, password2), @"set password should return true");
+    STAssertTrue(RHKeychainSetGenericComment(NULL, serviceName, comment2), @"set comment should return true");
+    
+    //query for newly set strings
+    STAssertTrue([username2 isEqualToString:RHKeychainGetGenericUsername(NULL, serviceName)], @"username should match preset value");
+    STAssertTrue([password2 isEqualToString:RHKeychainGetGenericPassword(NULL, serviceName)], @"password should match preset value");
+    STAssertTrue([comment2 isEqualToString:RHKeychainGetGenericComment(NULL, serviceName)], @"comment should match preset value");
+    
+    //test renaming service item
+    STAssertTrue(RHKeychainRenameGenericEntry(NULL, serviceName, serviceName2), @"rename service should return true");
+    STAssertFalse(RHKeychainDoesGenericEntryExist(NULL, serviceName), @"entry should no longer exist post rename");
+    STAssertTrue(RHKeychainDoesGenericEntryExist(NULL, serviceName2), @"entry should exist post rename");
+    
+    //query for set values post rename
+    STAssertTrue([username2 isEqualToString:RHKeychainGetGenericUsername(NULL, serviceName2)], @"username should match preset value");
+    STAssertTrue([password2 isEqualToString:RHKeychainGetGenericPassword(NULL, serviceName2)], @"password should match preset value");
+    STAssertTrue([comment2 isEqualToString:RHKeychainGetGenericComment(NULL, serviceName2)], @"comment should match preset value");
+    
+    //rename back
+    STAssertTrue(RHKeychainRenameGenericEntry(NULL, serviceName2, serviceName), @"rename service should return true");
+    STAssertFalse(RHKeychainDoesGenericEntryExist(NULL, serviceName2), @"entry should no longer exist post rename");
+    STAssertTrue(RHKeychainDoesGenericEntryExist(NULL, serviceName), @"entry should exist post rename");
+    
+    //query for set values post rename
+    STAssertTrue([username2 isEqualToString:RHKeychainGetGenericUsername(NULL, serviceName)], @"username should match preset value");
+    STAssertTrue([password2 isEqualToString:RHKeychainGetGenericPassword(NULL, serviceName)], @"password should match preset value");
+    STAssertTrue([comment2 isEqualToString:RHKeychainGetGenericComment(NULL, serviceName)], @"comment should match preset value");
+    
+    
+    //make sure setting to nil works (causing a removal of the field)
+    STAssertTrue(RHKeychainSetGenericUsername(NULL, serviceName, nil), @"set username should return true");
+    STAssertTrue(RHKeychainSetGenericPassword(NULL, serviceName, nil), @"set password should return true");
+    STAssertTrue(RHKeychainSetGenericComment(NULL, serviceName, nil), @"set comment should return true");
+    
+    //test 
+    STAssertNil(RHKeychainGetGenericUsername(NULL, serviceName), @"username should be nil post setting to nil");
+    STAssertNil(RHKeychainGetGenericPassword(NULL, serviceName), @"password should be nil post setting to nil");
+    STAssertNil(RHKeychainGetGenericComment(NULL, serviceName), @"comment should be nil post setting to nil");    
+    
+    //test removing
+    STAssertTrue(RHKeychainRemoveGenericEntry(NULL, serviceName), @"remove generic entry should return true");
+    STAssertFalse(RHKeychainDoesGenericEntryExist(NULL, serviceName), @"entry should no longer exist");
+    
+    STAssertNil(RHKeychainGetGenericUsername(NULL, serviceName), @"username should be nil post removal");
+    STAssertNil(RHKeychainGetGenericPassword(NULL, serviceName), @"password should be nil post removal");
+    STAssertNil(RHKeychainGetGenericComment(NULL, serviceName), @"comment should be nil post removal");
+    
     //done
     
     
