@@ -33,7 +33,7 @@
 #pragma mark - add and remove
 BOOL RHKeychainAddGenericEntry(SecKeychainRef keychain, NSString *serviceName){
     OSStatus status = SecKeychainAddGenericPassword(keychain,
-                                                    strlen([serviceName UTF8String]), 
+                                                    (UInt32)strlen([serviceName UTF8String]),
                                                     [serviceName UTF8String],
                                                     0,                        
                                                     NULL,
@@ -82,7 +82,7 @@ extern BOOL RHKeychainRenameGenericEntry(SecKeychainRef keychain, NSString *serv
 BOOL RHKeychainDoesGenericEntryExist(SecKeychainRef keychain, NSString *serviceName){
     SecKeychainItemRef itemRef = NULL;
     OSStatus status = SecKeychainFindGenericPassword(keychain,
-                                                     strlen([serviceName UTF8String]),
+                                                     (UInt32)strlen([serviceName UTF8String]),
                                                      [serviceName UTF8String],
                                                      0,
                                                      NULL,
@@ -180,7 +180,7 @@ extern BOOL RHKeychainSetGenericComment(SecKeychainRef keychain, NSString *servi
 SecKeychainItemRef RHKeychainGetKeychainItemRefWithServiceName(SecKeychainRef keychain, NSString *serviceName){
     SecKeychainItemRef itemRef = NULL;
     OSStatus status = SecKeychainFindGenericPassword(keychain,
-                                                     strlen([serviceName UTF8String]),
+                                                     (UInt32)strlen([serviceName UTF8String]),
                                                      [serviceName UTF8String],
                                                      0,
                                                      NULL,
@@ -247,7 +247,7 @@ BOOL RHKeychainSetItemAttributeTagForKeychainItemRef(SecKeychainItemRef itemRef,
     SecKeychainAttribute attributes[4];
     attributes[0].tag = attributeTag; //use the passed in tag
     attributes[0].data = dataBytes; 
-    attributes[0].length = [setData length];
+    attributes[0].length = (UInt32)[setData length];
     
     //wrap in a list structure
     SecKeychainAttributeList list;
@@ -311,7 +311,7 @@ BOOL RHKeychainSetPasswordForKeychainItemRef(SecKeychainItemRef itemRef, NSData 
     
     
     //perform the query    
-    OSStatus status = SecKeychainItemModifyAttributesAndData(itemRef, NULL, [setData length], dataBytes);
+    OSStatus status = SecKeychainItemModifyAttributesAndData(itemRef, NULL, (UInt32)[setData length], dataBytes);
     
     //free the password data
     if (dataBytes) free(dataBytes);
