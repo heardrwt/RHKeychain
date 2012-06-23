@@ -43,7 +43,7 @@ BOOL RHKeychainAddGenericEntry(SecKeychainRef keychain, NSString *serviceName){
                                                     );
     if (status != noErr) {
         CFStringRef errorMessageRef = SecCopyErrorMessageString(status, NULL);
-        NSLog(@"Error: %s failed with error code: %i msg: %@", __func__, status, errorMessageRef);
+        NSLog(@"Error: %s failed with error code: %ld msg: %@", __func__, (long)status, errorMessageRef);
         if (errorMessageRef) CFRelease(errorMessageRef);
         return NO;
     }
@@ -59,7 +59,7 @@ BOOL RHKeychainRemoveGenericEntry(SecKeychainRef keychain, NSString *serviceName
     
     if (status != noErr){
         CFStringRef errorMessageRef = SecCopyErrorMessageString(status, NULL);
-        NSLog(@"Error: %s failed with error code: %i msg: %@", __func__, status, errorMessageRef);
+        NSLog(@"Error: %s failed with error code: %ld msg: %@", __func__, (long)status, errorMessageRef);
         if (errorMessageRef) CFRelease(errorMessageRef);
         return NO;
     }
@@ -93,7 +93,7 @@ BOOL RHKeychainDoesGenericEntryExist(SecKeychainRef keychain, NSString *serviceN
     
     if (status != noErr ) {
         CFStringRef errorMessageRef = SecCopyErrorMessageString(status, NULL);
-        NSLog(@"Error: %s failed with error code: %i msg: %@", __func__, status, errorMessageRef);
+        NSLog(@"Error: %s failed with error code: %ld msg: %@", __func__, (long)status, errorMessageRef);
         if (errorMessageRef) CFRelease(errorMessageRef);
         return NO;
     }
@@ -189,7 +189,7 @@ SecKeychainItemRef RHKeychainGetKeychainItemRefWithServiceName(SecKeychainRef ke
                                                      &itemRef);
     if (status != noErr || !itemRef) {
         CFStringRef errorMessageRef = SecCopyErrorMessageString(status, NULL);
-        NSLog(@"Error: %s failed with error code: %i msg: %@", __func__, status, errorMessageRef);
+        NSLog(@"Error: %s failed with error code: %ld msg: %@", __func__, (long)status, errorMessageRef);
         if (errorMessageRef) CFRelease(errorMessageRef);
         return NULL;
     }
@@ -218,7 +218,7 @@ NSData* RHKeychainGetItemAttributeTagForKeychainItemRef(SecKeychainItemRef itemR
     //if error
     if (status != noErr) {
         CFStringRef errorMessageRef = SecCopyErrorMessageString(status, NULL);
-        NSLog(@"Error: %s failed with error code: %i msg: %@", __func__, status, errorMessageRef);
+        NSLog(@"Error: %s failed with error code: %ld msg: %@", __func__, (long)status, errorMessageRef);
         if (errorMessageRef) CFRelease(errorMessageRef);
         return nil;
     }    
@@ -260,7 +260,7 @@ BOOL RHKeychainSetItemAttributeTagForKeychainItemRef(SecKeychainItemRef itemRef,
     //if error
     if (status != noErr) {
         CFStringRef errorMessageRef = SecCopyErrorMessageString(status, NULL);
-        NSLog(@"Error: %s failed with error code: %i msg: %@", __func__, status, errorMessageRef);
+        NSLog(@"Error: %s failed with error code: %ld msg: %@", __func__, (long)status, errorMessageRef);
         if (errorMessageRef) CFRelease(errorMessageRef);
         return NO;
     }    
@@ -286,7 +286,7 @@ NSData* RHKeychainGetPasswordForKeychainItemRef(SecKeychainItemRef itemRef){
     //if error
     if (status != noErr) {
         CFStringRef errorMessageRef = SecCopyErrorMessageString(status, NULL);
-        NSLog(@"Error: %s failed with error code: %i msg: %@", __func__, status, errorMessageRef);
+        NSLog(@"Error: %s failed with error code: %ld msg: %@", __func__, (long)status, errorMessageRef);
         if (errorMessageRef) CFRelease(errorMessageRef);
         return nil;
     }    
@@ -319,7 +319,7 @@ BOOL RHKeychainSetPasswordForKeychainItemRef(SecKeychainItemRef itemRef, NSData 
     //if error
     if (status != noErr) {
         CFStringRef errorMessageRef = SecCopyErrorMessageString(status, NULL);
-        NSLog(@"Error: %s failed with error code: %i msg: %@", __func__, status, errorMessageRef);
+        NSLog(@"Error: %s failed with error code: %ld msg: %@", __func__, (long)status, errorMessageRef);
         if (errorMessageRef) CFRelease(errorMessageRef);
         return NO;
     }    
