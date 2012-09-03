@@ -229,8 +229,8 @@ NSData* RHKeychainGetItemAttributeTagForKeychainItemRef(SecKeychainItemRef itemR
     }
     
     //free the list structure
-    SecKeychainItemFreeContent (listOut, NULL);
-    
+    SecKeychainItemFreeAttributesAndData(listOut, NULL);
+
     return result; //done
 }
 
