@@ -257,6 +257,9 @@ BOOL RHKeychainSetItemAttributeTagForKeychainItemRef(SecKeychainItemRef itemRef,
     //perform the query
     OSStatus status = SecKeychainItemModifyAttributesAndData(itemRef, &list, 0, NULL);
     
+    //free the attribute data
+    if (dataBytes) free(dataBytes);
+
     //if error
     if (status != noErr) {
         CFStringRef errorMessageRef = SecCopyErrorMessageString(status, NULL);
@@ -265,9 +268,6 @@ BOOL RHKeychainSetItemAttributeTagForKeychainItemRef(SecKeychainItemRef itemRef,
         return NO;
     }    
     
-    //free the attribute data
-    if (dataBytes) free(dataBytes);
-
     return YES; //done
 }
 
