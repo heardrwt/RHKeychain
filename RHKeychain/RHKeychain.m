@@ -114,7 +114,7 @@ NSString* RHKeychainGetGenericPassword(SecKeychainRef keychain, NSString *servic
     if (!passwordData) return nil;
     
     //return
-    return [[[NSString alloc] initWithData:passwordData encoding:NSUTF8StringEncoding] autorelease];
+    return [[NSString alloc] initWithData:passwordData encoding:NSUTF8StringEncoding];
 }
 
 BOOL RHKeychainSetGenericPassword(SecKeychainRef keychain, NSString *serviceName, NSString *newPassword){
@@ -137,7 +137,7 @@ NSString* RHKeychainGetGenericUsername(SecKeychainRef keychain, NSString *servic
     if (!usernameData) return nil;
     
     //return
-    return [[[NSString alloc] initWithData:usernameData encoding:NSUTF8StringEncoding] autorelease];
+    return [[NSString alloc] initWithData:usernameData encoding:NSUTF8StringEncoding];
 }
 
 BOOL RHKeychainSetGenericUsername(SecKeychainRef keychain, NSString *serviceName, NSString *newUsername){
@@ -160,7 +160,7 @@ extern NSString* RHKeychainGetGenericComment(SecKeychainRef keychain, NSString *
     if (!commentData) return nil;
     
     //return
-    return [[[NSString alloc] initWithData:commentData encoding:NSUTF8StringEncoding] autorelease];
+    return [[NSString alloc] initWithData:commentData encoding:NSUTF8StringEncoding];
 
 }
 
